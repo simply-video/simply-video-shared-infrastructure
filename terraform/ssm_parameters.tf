@@ -80,3 +80,14 @@ resource "aws_ssm_parameter" "recording_secret" {
   type  = "SecureString"
   value = aws_iam_access_key.recording.secret
 }
+
+
+resource "aws_ssm_parameter" "PUSHER_APP_KEY" {
+  name  = "/${var.project}/${var.env}/chat/PUSHER_APP_KEY"
+  type  = "SecureString"
+  value = var.PUSHER_APP_KEY
+}
+data "aws_ssm_parameter" "PUSHER_APP_KEY" {
+  name       = aws_ssm_parameter.PUSHER_APP_KEY.name
+  depends_on = [aws_ssm_parameter.PUSHER_APP_KEY]
+}

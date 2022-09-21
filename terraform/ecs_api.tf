@@ -117,7 +117,19 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
         {
           name  = "provision_portal_API_SECRET",
           value = var.provision_portal_API_SECRET
-        }
+        },
+        {
+          name = "APP_URL",
+          value = "https://api.${api.domain}/api"
+        },
+        {
+          name = "CHAT_API_HOST",
+          value = "https://chat.${api.domain}/"
+        },
+        {
+          name = "FRONTEND_URL"
+          value = "https://${api.domain}"
+        },
       ],
       secrets = [
         {
@@ -139,6 +151,10 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
         {
           name      = "MAIL_PASSWORD",
           valueFrom = data.aws_ssm_parameter.MAIL_PASSWORD.id
+        },
+        {
+          name = "PUSHER_APP_KEY",
+          value = data.aws_ssm_parameter.MAIL_PASSWORD.id
         }
       ],
 
