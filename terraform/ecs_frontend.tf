@@ -68,7 +68,7 @@ resource "aws_ecs_service" "ecs-service-frontend" {
 
   network_configuration {
     subnets          = aws_subnet.sub-app-main.*.id
-    security_groups  = [aws_security_group.sg-frontend.id]
+    security_groups  = [aws_security_group.sg-frontend.id, aws_security_group.sg-http-outbound.id]
     assign_public_ip = false
   }
 
