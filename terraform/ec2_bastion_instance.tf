@@ -50,7 +50,7 @@ resource "aws_instance" "ec2-instance-bastion" {
   user_data = <<EOF
 #! /bin/bash
 sudo apt update
-sudo apt install zip
+sudo apt install -y unzip
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install

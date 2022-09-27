@@ -88,6 +88,23 @@ resource "aws_security_group" "sg-cache-redis" {
   }
 }
 
+resource "aws_security_group" "sg-frontend" {
+  name        = "${var.env}-${var.project}-frontend-sg"
+  description = "${var.env}-${var.project}-frontend-sg"
+  vpc_id      = aws_vpc.vpc-main.id
+  tags = {
+    Name = "${var.env}-${var.project}-frontend-sg"
+  }
+}
+resource "aws_security_group" "sg-portal" {
+  name        = "${var.env}-${var.project}-portal-sg"
+  description = "${var.env}-${var.project}-portal-sg"
+  vpc_id      = aws_vpc.vpc-main.id
+  tags = {
+    Name = "${var.env}-${var.project}-portal-sg"
+  }
+}
+
 ### security group rules
 
 ## sg-pub-lb rules
@@ -360,4 +377,42 @@ resource "aws_security_group_rule" "sgr-cache-redis-ingress-3" {
   to_port                  = 6379
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.sg-pub-bastion.id
+}
+
+
+resource "aws_security_group_rule" "sgr-frontend-ingress-1" {
+  type                     = "ingress"
+  security_group_id        = aws_security_group.sg-frontend.id
+  description              = "HTTPS from LBs"
+  from_port                = 443
+  to_port                  = 443
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.sg-pub-lb.id
+}
+resource "aws_security_group_rule" "sgr-frontend-ingress-2" {
+  type                     = "ingress"
+  security_group_id        = aws_security_group.sg-frontend.id
+  description              = "HTTPS from LBs"
+  from_port                = 80
+  to_port                  = 80
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.sg-pub-lb.id
+}
+resource "aws_security_group_rule" "sgr-portal-ingress-1" {
+  type                     = "ingress"
+  security_group_id        = aws_security_group.sg-portal.id
+  description              = "HTTPS from LBs"
+  from_port                = 443
+  to_port                  = 443
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.sg-pub-lb.id
+}
+resource "aws_security_group_rule" "sgr-portal-ingress-2" {
+  type                     = "ingress"
+  security_group_id        = aws_security_group.sg-portal.id
+  description              = "HTTPS from LBs"
+  from_port                = 80
+  to_port                  = 80
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.sg-pub-lb.id
 }

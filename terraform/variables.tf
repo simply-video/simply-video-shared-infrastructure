@@ -408,3 +408,7 @@ variable "provision_portal_API_HOST" {
   default = "https://provision_portalapistgn.simplyvideo.net"
 }
 variable "provision_portal_API_SECRET" { type = string }
+
+variable "PUSHER_APP_KEY" { type = string }
+
+variable "JWT_SECRET" { type = string }

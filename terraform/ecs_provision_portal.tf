@@ -64,7 +64,7 @@ resource "aws_ecs_service" "ecs-service-provision_portal" {
 
   network_configuration {
     subnets          = aws_subnet.sub-app-main.*.id
-    security_groups  = [aws_security_group.sg-app.id, aws_security_group.sg-http-outbound.id]
+    security_groups  = [aws_security_group.sg-portal.id]
     assign_public_ip = false
   }
 

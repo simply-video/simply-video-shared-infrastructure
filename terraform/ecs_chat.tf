@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "ecs-task-definition-chat" {
       secrets = [
         {
           name = "PUSHER_APP_KEY",
-          value = data.aws_ssm_parameter.MAIL_PASSWORD.id
+          valueFrom = data.aws_ssm_parameter.MAIL_PASSWORD.id
         }
       ],
 

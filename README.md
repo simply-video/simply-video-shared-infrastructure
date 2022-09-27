@@ -53,6 +53,8 @@ https://aws.amazon.com/premiumsupport/knowledge-center/secondary-account-access-
 2.1. login to bastion
 2.2. aws ecs update-service --cluster <cluster_name> --service <service_name> --enable-execute-command 
 aws ecs update-service --cluster test-simplyvideo-ecs-cluster --service test-simplyvideo-api-service --enable-execute-command
+aws ecs update-service --cluster test-simplyvideo-ecs-cluster --service test-simplyvideo-frontend-service --enable-execute-command
+
 2.3. stop current task and wait a new one (previous command appling only for a new task)
 2.4. aws ecs execute-command  \
     --region <region> \
@@ -65,9 +67,9 @@ aws ecs update-service --cluster test-simplyvideo-ecs-cluster --service test-sim
     aws ecs execute-command  \
     --region eu-central-1 \
     --cluster test-simplyvideo-ecs-cluster \
-    --task b4476b967c4c4826aa162685abd298aa \
-    --container api \
-    --command "/bin/bash" \
+    --task b82be47b9e4a4509ae85f978e40c8d58 \
+    --container frontend \
+    --command "sh" \
     --interactive
 
 2.5. run php artisan migrate:fresh --seed
