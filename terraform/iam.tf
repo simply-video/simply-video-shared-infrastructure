@@ -89,3 +89,38 @@ resource "aws_iam_user_policy" "recording" {
       ]
     })
 }
+
+
+#########
+# chat user
+#########
+
+resource "aws_iam_user" "chat" {
+  name = "${var.env}-${var.project}-chat_user"
+}
+resource "aws_iam_access_key" "chat" {
+  user = aws_iam_user.chat.name
+}
+resource "aws_iam_user_policy" "chat" {
+  name = "${var.env}-${var.project}-chat_policy"
+  user = aws_iam_user.chat.name
+  policy = jsonencode({
+      "Version" : "2012-10-17",
+      "Statement" : [
+        {
+          "Effect" : "Allow",
+          "Action" : [
+            "s3:ListBucket",
+            "s3:PutObject",
+            "s3:GetObject",
+            "s3:DeleteObject",
+            "s3:PutObjectAcl"
+          ],
+            "Resource": [
+                "${aws_s3_bucket.chat.arn}/*",
+                "${aws_s3_bucket.chat.arn}"
+            ]
+        }
+      ]
+    })
+}

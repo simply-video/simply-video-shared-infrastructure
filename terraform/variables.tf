@@ -375,8 +375,11 @@ variable "PEXIP_USER" { type = string }
 variable "PEXIP_CONFERENCING_NODE_PARENT" { type = string }
 variable "PEXIP_CONFERENCING_NODE" { type = string }
 
-variable "SENTRY_LARAVEL_DSN" { type = string }
-variable "APP_KEY" { type = string }
+variable "SENTRY_LARAVEL_DSN_API" { type = string }
+variable "SENTRY_LARAVEL_DSN_CHAT" { type = string }
+
+variable "APP_KEY_API" { type = string }
+variable "APP_KEY_CHAT" { type = string }
 
 variable "MAIL_HOST" {
   type    = string
@@ -410,5 +413,9 @@ variable "provision_portal_API_HOST" {
 variable "provision_portal_API_SECRET" { type = string }
 
 variable "PUSHER_APP_KEY" { type = string }
+variable "PUSHER_APP_ID" { type = string }
+variable "PUSHER_APP_SECRET" { type = string }
+variable "PUSHER_APP_CLUSTER" { type = string }
+
 
 variable "JWT_SECRET" { type = string }

@@ -46,7 +46,7 @@ https://aws.amazon.com/premiumsupport/knowledge-center/secondary-account-access-
 
 #### database seed
 
-1. create database svstgndb
+1. create database 'svstgndb' and 'sv_chat_db'
 
 
 2. login to fargate

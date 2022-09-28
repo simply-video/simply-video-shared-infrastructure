@@ -60,7 +60,7 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
         },
         {
           name  = "SENTRY_LARAVEL_DSN",
-          value = var.SENTRY_LARAVEL_DSN
+          value = var.SENTRY_LARAVEL_DSN_API
         },
         {
           name  = "REPORT_SENTRY",
@@ -68,7 +68,7 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
         },
         {
           name  = "APP_KEY",
-          value = var.APP_KEY
+          value = var.APP_KEY_API
         },
         {
           name  = "SAAS_URL_PATTERN",
@@ -120,7 +120,7 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
         },
         {
           name = "APP_URL",
-          value = "https://api.${var.domain}/api"
+          value = "https://api.${var.domain}/"
         },
         {
           name = "CHAT_API_HOST",
@@ -133,6 +133,10 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
         {
           name = "JWT_SECRET",
           value = var.JWT_SECRET
+        },
+        {
+          name = "AWS_BUCKET",
+          value = aws_s3_bucket.recording.bucket
         }
       ],
       secrets = [
@@ -158,7 +162,15 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
         },
         {
           name = "PUSHER_APP_KEY",
-          valueFrom = data.aws_ssm_parameter.MAIL_PASSWORD.id
+          valueFrom = data.aws_ssm_parameter.PUSHER_APP_KEY.id
+        },
+        {
+          name = "AWS_ACCESS_KEY_ID",
+          valueFrom = data.aws_ssm_parameter.recording_key_id.id
+        },
+        {
+          name = "AWS_SECRET_ACCESS_KEY",
+          valueFrom = data.aws_ssm_parameter.recording_secret.id
         }
       ],
 

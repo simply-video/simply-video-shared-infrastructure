@@ -74,11 +74,19 @@ resource "aws_ssm_parameter" "recording_key_id" {
   type  = "SecureString"
   value = aws_iam_access_key.recording.id
 }
+data "aws_ssm_parameter" "recording_key_id" {
+  name       = aws_ssm_parameter.recording_key_id.name
+  depends_on = [aws_ssm_parameter.recording_key_id]
+}
 
 resource "aws_ssm_parameter" "recording_secret" {
   name  = "/${var.project}/${var.env}/recording_storage/secret"
   type  = "SecureString"
   value = aws_iam_access_key.recording.secret
+}
+data "aws_ssm_parameter" "recording_secret" {
+  name       = aws_ssm_parameter.recording_secret.name
+  depends_on = [aws_ssm_parameter.recording_secret]
 }
 
 
@@ -90,4 +98,53 @@ resource "aws_ssm_parameter" "PUSHER_APP_KEY" {
 data "aws_ssm_parameter" "PUSHER_APP_KEY" {
   name       = aws_ssm_parameter.PUSHER_APP_KEY.name
   depends_on = [aws_ssm_parameter.PUSHER_APP_KEY]
+}
+
+resource "aws_ssm_parameter" "PUSHER_APP_ID" {
+  name  = "/${var.project}/${var.env}/chat/PUSHER_APP_ID"
+  type  = "SecureString"
+  value = var.PUSHER_APP_ID
+}
+data "aws_ssm_parameter" "PUSHER_APP_ID" {
+  name       = aws_ssm_parameter.PUSHER_APP_ID.name
+  depends_on = [aws_ssm_parameter.PUSHER_APP_ID]
+}
+
+resource "aws_ssm_parameter" "PUSHER_APP_SECRET" {
+  name  = "/${var.project}/${var.env}/chat/PUSHER_APP_SECRET"
+  type  = "SecureString"
+  value = var.PUSHER_APP_SECRET
+}
+data "aws_ssm_parameter" "PUSHER_APP_SECRET" {
+  name       = aws_ssm_parameter.PUSHER_APP_SECRET.name
+  depends_on = [aws_ssm_parameter.PUSHER_APP_SECRET]
+}
+
+resource "aws_ssm_parameter" "PUSHER_APP_CLUSTER" {
+  name  = "/${var.project}/${var.env}/chat/PUSHER_APP_CLUSTER"
+  type  = "SecureString"
+  value = var.PUSHER_APP_CLUSTER
+}
+data "aws_ssm_parameter" "PUSHER_APP_CLUSTER" {
+  name       = aws_ssm_parameter.PUSHER_APP_CLUSTER.name
+  depends_on = [aws_ssm_parameter.PUSHER_APP_CLUSTER]
+}
+
+resource "aws_ssm_parameter" "chat_key_id" {
+  name  = "/${var.project}/${var.env}/chat_storage/key_id"
+  type  = "SecureString"
+  value = aws_iam_access_key.chat.id
+}
+data "aws_ssm_parameter" "chat_key_id" {
+  name       = aws_ssm_parameter.chat_key_id.name
+  depends_on = [aws_ssm_parameter.chat_key_id]
+}
+resource "aws_ssm_parameter" "chat_secret" {
+  name  = "/${var.project}/${var.env}/chat_storage/secret"
+  type  = "SecureString"
+  value = aws_iam_access_key.chat.secret
+}
+data "aws_ssm_parameter" "chat_secret" {
+  name       = aws_ssm_parameter.chat_secret.name
+  depends_on = [aws_ssm_parameter.chat_secret]
 }

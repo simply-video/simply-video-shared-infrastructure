@@ -24,13 +24,77 @@ resource "aws_ecs_task_definition" "ecs-task-definition-chat" {
         {
           name  = "env",
           value = "${var.env}"
+        },
+        {
+          name  = "DB_CONNECTION",
+          value = "pgsql"
+        },
+        {
+          name  = "DB_HOST",
+          value = aws_rds_cluster.rds-cluster-main.endpoint
+        },
+        {
+          name  = "DB_USERNAME",
+          value = var.db_instance_master_uname_main
+        },
+        {
+          name  = "DB_DATABASE",
+          value = "sv_chat_db"
+        },
+        {
+          name  = "SENTRY_LARAVEL_DSN",
+          value = var.SENTRY_LARAVEL_DSN_CHAT
+        },
+        {
+          name  = "REPORT_SENTRY",
+          value = "true"
+        },
+        {
+          name  = "SAAS_URL_PATTERN",
+          value = "/.*/"
+        },
+        {
+          name  = "APP_KEY",
+          value = var.APP_KEY_CHAT
+        },
+        {
+          name = "BROADCAST_DRIVER",
+          value = "pusher"
+        },
+        {
+          name = "AWS_BUCKET",
+          value = aws_s3_bucket.chat.bucket
         }
       ],
 
       secrets = [
         {
+          name      = "DB_PASSWORD",
+          valueFrom = data.aws_ssm_parameter.rds_password.id
+        },
+        {
           name = "PUSHER_APP_KEY",
-          valueFrom = data.aws_ssm_parameter.MAIL_PASSWORD.id
+          valueFrom = data.aws_ssm_parameter.PUSHER_APP_KEY.id
+        },
+        {
+          name = "PUSHER_APP_ID",
+          valueFrom = data.aws_ssm_parameter.PUSHER_APP_ID.id
+        },
+        {
+          name = "PUSHER_APP_SECRET",
+          valueFrom = data.aws_ssm_parameter.PUSHER_APP_SECRET.id
+        },
+        {
+          name = "PUSHER_APP_CLUSTER",
+          valueFrom = data.aws_ssm_parameter.PUSHER_APP_CLUSTER.id
+        },
+        {
+          name = "AWS_ACCESS_KEY_ID",
+          valueFrom = data.aws_ssm_parameter.chat_key_id.id
+        },
+        {
+          name = "AWS_SECRET_ACCESS_KEY",
+          valueFrom = data.aws_ssm_parameter.chat_secret.id
         }
       ],
 
