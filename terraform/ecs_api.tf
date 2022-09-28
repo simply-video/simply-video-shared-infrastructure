@@ -111,12 +111,8 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
           value = tostring(var.ACTIVE_CAMPAIGN_BASE_LIST_ID)
         },
         {
-          name = "provision_portal_API_HOST",
-          value = var.provision_portal_API_HOST
-        },
-        {
-          name  = "provision_portal_API_SECRET",
-          value = var.provision_portal_API_SECRET
+          name  = "CHAT_API_SECRET",
+          value = var.CHAT_API_SECRET
         },
         {
           name = "APP_URL",
@@ -137,7 +133,11 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
         {
           name = "AWS_BUCKET",
           value = aws_s3_bucket.recording.bucket
-        }
+        },
+        # {
+        #   name = "CACHE_DRIVER",
+        #   value = "redis"
+        # }
       ],
       secrets = [
         {

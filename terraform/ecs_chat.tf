@@ -64,6 +64,18 @@ resource "aws_ecs_task_definition" "ecs-task-definition-chat" {
         {
           name = "AWS_BUCKET",
           value = aws_s3_bucket.chat.bucket
+        },
+        {
+          name = "MONOLITH_API_SECRET",
+          value = var.CHAT_API_SECRET
+        },
+        # {
+        #   name = "CACHE_DRIVER",
+        #   value = "redis"
+        # },
+        {
+          name  = "PEXIP_HOST",
+          value = var.PEXIP_HOST
         }
       ],
 
@@ -95,7 +107,23 @@ resource "aws_ecs_task_definition" "ecs-task-definition-chat" {
         {
           name = "AWS_SECRET_ACCESS_KEY",
           valueFrom = data.aws_ssm_parameter.chat_secret.id
-        }
+        },
+        {
+          name      = "PEXIP_PASSWORD",
+          valueFrom = data.aws_ssm_parameter.PEXIP_PASSWORD.id
+        },
+        {
+          name      = "PEXIP_USER",
+          valueFrom = data.aws_ssm_parameter.PEXIP_USER.id
+        },
+        {
+          name      = "PEXIP_WEBHOOKS_USER",
+          valueFrom = data.aws_ssm_parameter.PEXIP_WEBHOOKS_USER.id
+        },
+        {
+          name      = "PEXIP_WEBHOOKS_PASSWORD",
+          valueFrom = data.aws_ssm_parameter.PEXIP_WEBHOOKS_PASSWORD.id
+        },
       ],
 
       logConfiguration = {

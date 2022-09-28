@@ -45,6 +45,27 @@ data "aws_ssm_parameter" "PEXIP_USER" {
   depends_on = [aws_ssm_parameter.PEXIP_USER]
 }
 
+resource "aws_ssm_parameter" "PEXIP_WEBHOOKS_USER" {
+  name  = "/${var.project}/${var.env}/pexip/webhook_user"
+  type  = "SecureString"
+  value = var.PEXIP_WEBHOOKS_USER
+}
+data "aws_ssm_parameter" "PEXIP_WEBHOOKS_USER" {
+  name       = aws_ssm_parameter.PEXIP_WEBHOOKS_USER.name
+  depends_on = [aws_ssm_parameter.PEXIP_WEBHOOKS_USER]
+}
+
+resource "aws_ssm_parameter" "PEXIP_WEBHOOKS_PASSWORD" {
+  name  = "/${var.project}/${var.env}/pexip/webhook_password"
+  type  = "SecureString"
+  value = var.PEXIP_WEBHOOKS_PASSWORD
+}
+data "aws_ssm_parameter" "PEXIP_WEBHOOKS_PASSWORD" {
+  name       = aws_ssm_parameter.PEXIP_WEBHOOKS_PASSWORD.name
+  depends_on = [aws_ssm_parameter.PEXIP_WEBHOOKS_PASSWORD]
+}
+
+
 
 #######
 # mail

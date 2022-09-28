@@ -372,6 +372,8 @@ variable "PEXIP_HOST_IP" { type = string }
 variable "PEXIP_HOST" { type = string }
 variable "PEXIP_PASSWORD" { type = string }
 variable "PEXIP_USER" { type = string }
+variable "PEXIP_WEBHOOKS_USER" { type = string }
+variable "PEXIP_WEBHOOKS_PASSWORD" { type = string }
 variable "PEXIP_CONFERENCING_NODE_PARENT" { type = string }
 variable "PEXIP_CONFERENCING_NODE" { type = string }
 
@@ -406,11 +408,10 @@ variable "ACTIVE_CAMPAIGN_API_KEY" { type = string }
 variable "ACTIVE_CAMPAIGN_API_VERSION" { type = number }
 variable "ACTIVE_CAMPAIGN_BASE_LIST_ID" { type = number }
 
-variable "provision_portal_API_HOST" {
-  type    = string
-  default = "https://provision_portalapistgn.simplyvideo.net"
+variable "CHAT_API_SECRET" {
+   description = "Any string"
+   type = string 
 }
-variable "provision_portal_API_SECRET" { type = string }
 
 variable "PUSHER_APP_KEY" { type = string }
 variable "PUSHER_APP_ID" { type = string }
