@@ -132,8 +132,21 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
         },
         {
           name = "AWS_BUCKET",
-          value = aws_s3_bucket.recording.bucket
+          value = "svstgn" //aws_s3_bucket.recording.bucket
         },
+        {
+          name = "AWS_DEFAULT_REGION",
+          valeu = "eu-west-2"
+        },
+        {
+          name = "WOWZA_RTMP",
+          value = "rtmp://rec.simplyvideo.net/stgn"
+        },
+        {
+          name = "RECORDING_PARTICIPANT_NAME",
+          value = "rec.simplyvideo.net"
+        }
+
         # {
         #   name = "CACHE_DRIVER",
         #   value = "redis"

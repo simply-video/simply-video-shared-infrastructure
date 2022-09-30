@@ -22,16 +22,20 @@ resource "aws_ecs_task_definition" "ecs-task-definition-frontend" {
 
       environment = [
         {
-          name  = "env",
-          value = "${var.env}",
+          name = "API_URL",
+          value = "https://api.${var.domain}/api/"
         },
         {
-          name  = "NODE_ENV",
-          value = "shared",
-        }
+          name = "CHAT_URL",
+          value = "https://chat.${var.domain}/"
+        },
       ],
 
       secrets = [
+        {
+          name = "PUSHER_APP_KEY",
+          valueFrom = data.aws_ssm_parameter.PUSHER_APP_KEY.id
+        },
       ],
 
       logConfiguration = {

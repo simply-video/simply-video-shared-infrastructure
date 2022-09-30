@@ -236,8 +236,8 @@ variable "ecs_taskdef_cpu" {
     provision_portal = number
   })
   default = {
-    api      = 512
-    chat     = 512
+    api      = 2048
+    chat     = 1024
     frontend = 512
     provision_portal = 512
   }
@@ -252,7 +252,7 @@ variable "ecs_taskdef_memory" {
     provision_portal = number
   })
   default = {
-    api      = 2048
+    api      = 4096
     chat     = 2048
     frontend = 2048
     provision_portal = 2048

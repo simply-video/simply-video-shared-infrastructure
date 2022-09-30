@@ -83,7 +83,9 @@ resource "aws_iam_user_policy" "recording" {
           ],
             "Resource": [
                 "${aws_s3_bucket.recording.arn}/*",
-                "${aws_s3_bucket.recording.arn}"
+                "${aws_s3_bucket.recording.arn}",
+                "arn:aws:s3:::svstgn/*",
+                "arn:aws:s3:::svstgn"
             ]
         }
       ]

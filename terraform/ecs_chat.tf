@@ -69,13 +69,25 @@ resource "aws_ecs_task_definition" "ecs-task-definition-chat" {
           name = "MONOLITH_API_SECRET",
           value = var.CHAT_API_SECRET
         },
-        # {
-        #   name = "CACHE_DRIVER",
-        #   value = "redis"
-        # },
+        {
+          name = "MONOLITH_URL",
+          value = "https://api.${var.domain}"
+        },
+        {
+          name = "CACHE_DRIVER",
+          value = "redis"
+        },
+        {
+          name = "REDIS_HOST",
+          value = "tls://${aws_elasticache_replication_group.ec-cluster-rg-main.configuration_endpoint_address}"
+        },
         {
           name  = "PEXIP_HOST",
           value = var.PEXIP_HOST
+        },
+        {
+          name = "WRITE_PEXIP_WEBHOOKS_TO_DB",
+          value = "true"
         }
       ],
 

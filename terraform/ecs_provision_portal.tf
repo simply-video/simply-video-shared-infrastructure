@@ -22,8 +22,8 @@ resource "aws_ecs_task_definition" "ecs-task-definition-provision_portal" {
 
       environment = [
         {
-          name  = "env",
-          value = "${var.env}"
+          name = "API_URL",
+          value = "https://api.${var.domain}/api/"
         }
       ],
 
