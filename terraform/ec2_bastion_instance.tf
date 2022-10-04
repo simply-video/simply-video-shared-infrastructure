@@ -13,15 +13,15 @@ data "aws_ami" "latest-ubuntu" {
   }
 }
 
-resource "aws_eip" "eip-bastion-main" {
-  vpc      = true
-  instance = aws_instance.ec2-instance-bastion.id
+# resource "aws_eip" "eip-bastion-main" {
+#   vpc      = true
+#   instance = aws_instance.ec2-instance-bastion.id
 
-  tags = {
-    Name = "${var.env}-${var.project}-eip-bastion"
+#   tags = {
+#     Name = "${var.env}-${var.project}-eip-bastion"
 
-  }
-}
+#   }
+# }
 
 resource "aws_instance" "ec2-instance-bastion" {
   ami                         = data.aws_ami.latest-ubuntu.id

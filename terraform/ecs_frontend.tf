@@ -22,18 +22,18 @@ resource "aws_ecs_task_definition" "ecs-task-definition-frontend" {
 
       environment = [
         {
-          name = "API_URL",
+          name = "VUE_APP_API_URL",
           value = "https://api.${var.domain}/api/"
         },
         {
-          name = "CHAT_URL",
+          name = "VUE_APP_CHAT_URL",
           value = "https://chat.${var.domain}/"
         },
       ],
 
       secrets = [
         {
-          name = "PUSHER_APP_KEY",
+          name = "VUE_APP_PUSHER_APP_KEY",
           valueFrom = data.aws_ssm_parameter.PUSHER_APP_KEY.id
         },
       ],

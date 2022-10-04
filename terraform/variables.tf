@@ -12,7 +12,7 @@ variable "env" {
 variable "aws_region" {
   description = "Platform region"
   type        = string
-  default     = "eu-central-1"
+  default     = "eu-west-2"
 }
 
 variable "vpc_cidr_main" {
@@ -199,11 +199,6 @@ variable "auth_bastion_ssh_key" {
   description = "Bastion instance ssh key"
   type        = string
   sensitive   = true
-}
-
-variable "lb_listener_https_certificate_arn" {
-  description = "AWS arm Certificate for https lb listener"
-  type        = string
 }
 
 variable "domain" {

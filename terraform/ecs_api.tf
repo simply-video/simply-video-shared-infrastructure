@@ -39,7 +39,7 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
         },
         {
           name  = "DB_DATABASE",
-          value = "svstgndb"
+          value = "sv_api_db"
         },
 
         {
@@ -145,12 +145,15 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
         {
           name = "RECORDING_PARTICIPANT_NAME",
           value = "rec.simplyvideo.net"
+        },
+        {
+          name = "CACHE_DRIVER",
+          value = "redis"
+        },
+        {
+          name = "REDIS_HOST",
+          value = "tls://${aws_elasticache_replication_group.ec-cluster-rg-main.configuration_endpoint_address}"
         }
-
-        # {
-        #   name = "CACHE_DRIVER",
-        #   value = "redis"
-        # }
       ],
       secrets = [
         {

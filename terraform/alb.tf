@@ -34,7 +34,7 @@ resource "aws_lb_listener" "alb-listener-https-main" {
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
-  certificate_arn   = var.lb_listener_https_certificate_arn
+  certificate_arn   = aws_acm_certificate.acm_certificate.arn
 
   default_action {
     type = "fixed-response"
@@ -129,7 +129,7 @@ resource "aws_lb_target_group" "alb-tg-frontend" {
 }
 
 resource "aws_lb_target_group" "alb-tg-provision_portal" {
-  name        = "${var.env}-${var.project}-provision-port"
+  name        = "${var.env}-${var.project}-provision"
   protocol    = "HTTP"
   port        = 80
   vpc_id      = aws_vpc.vpc-main.id
@@ -151,7 +151,7 @@ resource "aws_lb_target_group" "alb-tg-provision_portal" {
   }
 
   tags = {
-    Name = "${var.env}-${var.project}-frontend"
+    Name = "${var.env}-${var.project}-provision"
   }
 }
 

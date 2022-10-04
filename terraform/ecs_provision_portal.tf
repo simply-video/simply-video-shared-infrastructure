@@ -22,7 +22,7 @@ resource "aws_ecs_task_definition" "ecs-task-definition-provision_portal" {
 
       environment = [
         {
-          name = "API_URL",
+          name = "VUE_APP_API_URL",
           value = "https://api.${var.domain}/api/"
         }
       ],
