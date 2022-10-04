@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket  = "simply-video-terraform-state" // Bucket where to SAVE Terraform State
-    key     = "xrpexip.com/terraform.tfstate"       // Object name in the bucket to SAVE Terraform State
+    key     = "test/terraform.tfstate"       // Object name in the bucket to SAVE Terraform State
     region  = "eu-central-1"                 // Region where bucket created
     encrypt = true
   }
