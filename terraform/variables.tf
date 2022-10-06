@@ -231,10 +231,10 @@ variable "ecs_taskdef_cpu" {
     provision_portal = number
   })
   default = {
-    api      = 2048
+    api      = 1024
     chat     = 1024
-    frontend = 512
-    provision_portal = 512
+    frontend = 256
+    provision_portal = 256
   }
 }
 
@@ -247,10 +247,10 @@ variable "ecs_taskdef_memory" {
     provision_portal = number
   })
   default = {
-    api      = 4096
+    api      = 2048
     chat     = 2048
-    frontend = 2048
-    provision_portal = 2048
+    frontend = 512
+    provision_portal = 512
   }
 }
 
@@ -299,7 +299,7 @@ variable "ecs_autoscaling_min_tasks" {
 }
 
 variable "ecs_autoscaling_max_tasks" {
-  description = "ECS autoscaling_min_tasks. The max capacity of the scalable target"
+  description = "The max capacity of the scalable target"
   type = object({
     api      = number
     chat     = number
@@ -307,10 +307,10 @@ variable "ecs_autoscaling_max_tasks" {
     provision_portal = number
   })
   default = {
-    api      = 10
-    chat     = 10
-    frontend = 10
-    provision_portal = 10
+    api      = 1
+    chat     = 5
+    frontend = 5
+    provision_portal = 5
   }
 }
 
@@ -415,3 +415,4 @@ variable "PUSHER_APP_CLUSTER" { type = string }
 
 
 variable "JWT_SECRET" { type = string }
+variable "WOWZA_RTMP" { type = string}

@@ -49,7 +49,9 @@ https://aws.amazon.com/premiumsupport/knowledge-center/secondary-account-access-
 2. login to fargate
 2.1. login to bastion
 2.2. aws ecs update-service --cluster <cluster_name> --service <service_name> --enable-execute-command 
-aws ecs update-service --cluster svxrio-simplyvideo-ecs-cluster --service svxrio-simplyvideo-chat-service --enable-execute-command
+example
+aws ecs update-service --cluster xrpexip-simplyvideo-ecs-cluster --service xrpexip-simplyvideo-api-service --enable-execute-command
+aws ecs update-service --cluster xrpexip-simplyvideo-ecs-cluster --service xrpexip-simplyvideo-chat-service --enable-execute-command
 
 2.3. stop current task and wait a new one (previous command appling only for a new task)
 2.4. aws ecs execute-command  \
@@ -60,11 +62,12 @@ aws ecs update-service --cluster svxrio-simplyvideo-ecs-cluster --service svxrio
     --command "/bin/bash" \
     --interactive
 
+example
     aws ecs execute-command  \
     --region eu-west-2 \
-    --cluster svxrio-simplyvideo-ecs-cluster \
-    --task bab97588c11b4d64adcf5f8560289c80 \
-    --container chat \
+    --cluster xrpexip-simplyvideo-ecs-cluster \
+    --task 79dc1617da4e4f41ba9234e5c51933a9 \
+    --container api \
     --command "bash" \
     --interactive
 

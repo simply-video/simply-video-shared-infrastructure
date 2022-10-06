@@ -14,6 +14,9 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
       cpu               = var.ecs_taskdef_cpu["api"],
       memoryReservation = var.ecs_taskdef_memory["api"],
 
+      essential = true,
+      mountPoints = [],
+      
       portMappings = [
         {
           containerPort = var.ecs_taskdef_containerport
@@ -140,7 +143,7 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
         },
         {
           name = "WOWZA_RTMP",
-          value = "rtmp://rec.simplyvideo.net/stgn"
+          value = var.WOWZA_RTMP
         },
         {
           name = "RECORDING_PARTICIPANT_NAME",
