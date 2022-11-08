@@ -231,10 +231,10 @@ variable "ecs_taskdef_cpu" {
     provision_portal = number
   })
   default = {
-    api      = 1024
+    api      = 2048
     chat     = 1024
-    frontend = 256
-    provision_portal = 256
+    frontend = 512
+    provision_portal = 512
   }
 }
 
@@ -247,10 +247,10 @@ variable "ecs_taskdef_memory" {
     provision_portal = number
   })
   default = {
-    api      = 2048
+    api      = 4096
     chat     = 2048
-    frontend = 512
-    provision_portal = 512
+    frontend = 1024
+    provision_portal = 1024
   }
 }
 
@@ -374,6 +374,7 @@ variable "PEXIP_CONFERENCING_NODE" { type = string }
 
 variable "SENTRY_LARAVEL_DSN_API" { type = string }
 variable "SENTRY_LARAVEL_DSN_CHAT" { type = string }
+variable "SENTRY_LARAVEL_DSN_PROVISION_PORTAL" { type = string }
 
 variable "APP_KEY_API" { type = string }
 variable "APP_KEY_CHAT" { type = string }

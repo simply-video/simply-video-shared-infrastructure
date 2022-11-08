@@ -24,6 +24,10 @@ resource "aws_ecs_task_definition" "ecs-task-definition-provision_portal" {
         {
           name = "VUE_APP_API_URL",
           value = "https://api.${var.domain}/api/"
+        },
+        {
+          name = "VUE_APP_SENTRY_DSN"
+          value = var.SENTRY_LARAVEL_DSN_PROVISION_PORTAL
         }
       ],
 
