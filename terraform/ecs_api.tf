@@ -156,7 +156,27 @@ resource "aws_ecs_task_definition" "ecs-task-definition-api" {
         {
           name = "REDIS_HOST",
           value = "tls://${aws_elasticache_replication_group.ec-cluster-rg-main.configuration_endpoint_address}"
-        }
+        },
+        {
+          name = "BROADCAST_DRIVER",
+          value = "pusher"
+        },
+        {
+          name = "PUSHER_APP_KEY",
+          valueFrom = data.aws_ssm_parameter.PUSHER_APP_KEY.id
+        },
+        {
+          name = "PUSHER_APP_ID",
+          valueFrom = data.aws_ssm_parameter.PUSHER_APP_ID.id
+        },
+        {
+          name = "PUSHER_APP_SECRET",
+          valueFrom = data.aws_ssm_parameter.PUSHER_APP_SECRET.id
+        },
+        {
+          name = "PUSHER_APP_CLUSTER",
+          valueFrom = data.aws_ssm_parameter.PUSHER_APP_CLUSTER.id
+        },
       ],
       secrets = [
         {
